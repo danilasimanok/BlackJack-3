@@ -15,7 +15,5 @@ public abstract class Player {
         hand.add(current);
     }
 
-    public Command desision() {
-        return intellect.decide();
-    }
+    public Command desision() {return intellect.decide(hand.score);}
 }
