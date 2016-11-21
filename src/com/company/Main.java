@@ -5,9 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
         List<Player> players = new LinkedList<>();
-        players.add(new Computer());
-        players.add(new Computer());
-        players.add(new Human());
+        players.add(new Computer(new LimitIntellect(14)));
+        players.add(new Computer(new LimitIntellect(20)));
+        players.add(new Human(new ConsoleIntellect()));
         Dealer dealer=new Dealer();
         players.add(dealer);
 
@@ -19,7 +19,10 @@ public class Main {
 
         for(Player player:players){
             while (true){
+                System.out.println(player.hand.getScore()+""
+                +player.hand);
                 Command command=player.desision();
+                System.out.println(command);
                 if(command==Command.STAND)
                     break;
                 if(command==Command.HIT)
