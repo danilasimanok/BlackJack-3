@@ -19,7 +19,8 @@ public class Table {
 
     public void stavki(){
     for(Player player:players){
-        if(player!=dealer)player.hand.stavka=player.tvoyastavka(player.ballance);
+        if(player!=dealer){player.hand.stavka=player.tvoyastavka(player.ballance);
+        System.out.println("Player "+player.name+" postavil "+player.hand.stavka);}
     }
     }
 
@@ -38,7 +39,12 @@ public class Table {
                 System.out.println(player.hand.getScore()+""
                         +player.hand);
                 Command command=player.desision();
+                if(player==dealer&&command==Command.DOUBLE)command=Command.HIT;
                 System.out.println(command);
+                if(command==Command.DOUBLE){
+                    player.hand.stavka=player.hand.stavka*2;
+                    command=Command.STAND;
+                }
                 if(command==Command.STAND)
                     break;
                 if(command==Command.HIT)
@@ -90,5 +96,22 @@ public class Table {
 
     public void sbros(){
         for(Player player:players)player.hand.clear();
+    }
+
+    public void losers() {
+        List<Player>bankrupts=new LinkedList<>();
+        System.out.println("Ballance");
+        for (Player player: players)if(player!=dealer){
+            System.out.println(player.name+" "+player.ballance);
+            if (player.ballance <= 0)bankrupts.add(player);
+        }
+        for (Player player:bankrupts) players.remove(player);
+    }
+
+    public boolean konec() {
+        boolean f=true;
+        for(Player player:players)
+            if(player!=dealer)f=false;
+        return !f;
     }
 }

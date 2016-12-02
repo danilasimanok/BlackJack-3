@@ -11,9 +11,12 @@ public class LimitIntellect extends Intellect {
     private int limit;
 
     @Override
-    public Command decide(int score){
-        if(score<limit)
-            return Command.HIT;
+    public Command decide(Player player){
+        if(player.hand.getScore()<limit)
+            if((player.hand.getScore()==11||(Math.random()<0.5))&&(player.hand.stavka*2<=player.ballance))
+                return Command.DOUBLE;
+            else return Command.HIT;
+
         else
             return Command.STAND;
     }

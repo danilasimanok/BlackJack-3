@@ -25,7 +25,7 @@ public abstract class Player {
     public Command desision() {
         int score=hand.getScore();
         if(score>21)return Command.STAND;
-        return intellect.decide(score);
+        return intellect.decide(this);
     }
 
     public int tvoyastavka(int ballance) {

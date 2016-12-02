@@ -7,7 +7,7 @@ public class CompuctorStavochnik extends Stavochnik {
     @Override
     public int sdelatstavku(int ballance) {
         int stavka=50;
-        while(Math.random()==0)
+        while(Math.random()<0.5 && stavka+50<=ballance)
             stavka+=50;
         return stavka;
     }

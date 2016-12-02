@@ -11,7 +11,12 @@ public class Dealer extends Computer {
     }
 
     public void deal(Player player) {
+        newDeck();
         Card current=deck.pop();
         player.take(current);
+    }
+
+    public void newDeck(){
+        if(deck.isEmpty())deck = new Deck();
     }
 }
