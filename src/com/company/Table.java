@@ -43,6 +43,7 @@ public class Table {
                 System.out.println(command);
                 if(command==Command.DOUBLE){
                     player.hand.stavka=player.hand.stavka*2;
+                    dealer.deal(player);
                     command=Command.STAND;
                 }
                 if(command==Command.STAND)
